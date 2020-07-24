@@ -6,14 +6,28 @@ const MainPage = () => {
     return (
         <main>
             <div className="UpperBar">
-                Upper bar
+                Upper bar (Theme of Website)
             </div>
             <div className="MainContent">
                 <div className="LeftBar">
-                    Catalog and some minor contents
+                    <div>
+                        Catalog: Tier1 and Tier2 topics
+                    </div>
+                    <div>
+                        Some minor contents
+                    </div>    
                 </div>
+                
                 <div className="RightBar">
-                    Main contents starting here
+                    <div>
+                        Main contents start here
+                    </div>
+                    <div>
+                        Mission of TOP
+                    </div>
+                    <div>
+                    Formal introduction of website
+                    </div>                    
                 </div>
             </div>
         </main>
