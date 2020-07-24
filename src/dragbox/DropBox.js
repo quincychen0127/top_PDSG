@@ -2,19 +2,7 @@ import React from "react"
 import { ItemTypes } from './Constants'
 import { useDrop } from 'react-dnd'
 
-const style = {
-  marginRight: '1.5rem',
-  marginBottom: '1.5rem',
-  color: 'black',
-  padding: '1rem',
-  textAlign: 'center',
-  fontSize: '20px',
-  lineHeight: 'normal',
-  float: 'center',
-  border: '15px solid green',
-  padding: '50px',
-  margin: '20px',
-}
+import './DropBox.css'
 
 export const DropBox = () => {
 	const [{ canDrop, isOver}, drop] = useDrop({
@@ -36,7 +24,7 @@ export const DropBox = () => {
 		<div 
 			className = "DropBox"
 			ref = {drop}
-			style = {{...style, backgroundColor}}
+			style = {{backgroundColor}}
 		>
       		{isActive ? 'Release to drop' : 'Drag a box here'}
       	</div>

@@ -1,32 +1,31 @@
 /*
-filename: App.js 
+Structure of Web Application
 */
 
-import React, { useCallback, useState } from "react";
-import DragBox from './DragBox';
-import DropBox from './DropBox';
-import { DndProvider,DragDropContext } from "react-dnd";
-import {HTML5Backend} from "react-dnd-html5-backend";
-import Example from './example';
+import React, { Component } from "react";
+import {BrowserRouter, Route, Switch, Link} from "react-router-dom"
+
 
 import "./App.css";
+import MainPage from './pages/MainPage'
+import MicroPlasticPage from './pages/MicroPlasticPage'
+import WelcomePage from './pages/WelcomePage'
 
-function App() {
-
-  // We pass onDrop function and accept prop to the component. It will be used as initial params for useDropzone hook
-  return (
-    <div className="App">
-        <DndProvider backend={HTML5Backend}>
-          <Example />
-        </DndProvider>
-    </div>
-  );
+class App extends Component {
+    render() {
+        return (
+            <BrowserRouter>
+                <Switch>
+                    <Route exact path="/" component={WelcomePage}/>
+                    <Route exact path="/MainPage" component={MainPage}/>
+                    <Route exact path="/MicroPlastics" component={MicroPlasticPage}/>
+                </Switch>
+            </BrowserRouter>
+        );
+    }
 };
-
-
 
 // We will pass this function to ImageList and then to Image -> Quiet a bit of props drilling, the code can be refactored and place all the state management in ImageList itself to avoid props drilling. It's an exercise for you :)
 
 export default App;
-
 

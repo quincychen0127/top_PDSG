@@ -36,3 +36,36 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* CSS to <main> components */
+main {
+  display: flex;
+  flex-flow: column;
+  height: 95vh;
+  width: 98vw;
+}
+.NavBar {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 30vh;
+  width: 98vw;
+}
+.SubPageTopic {
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+.WelcomePageTopic {
+  display: flex;
+  flex-flow: column;
+  height: 65vh;
+  width: 98vw;
+  justify-content: center;
+  align-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 40px;
+  background-color: aqua;
+}

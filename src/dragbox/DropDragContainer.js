@@ -1,12 +1,12 @@
 import React, { memo } from 'react'
 import { DropBox } from './DropBox'
 import { DragBox } from './DragBox'
-import "./style.css"
+import "./DropDragContainer.css"
 
-export const Container = memo(function Container() {
+const Container = memo(function Container() {
   return (
-    <main>
-          <h2 className = "Question"> Identify the Microplastic</h2>
+    <div>
+          <h2 className = "Question"> Sources of Micro-plastics</h2>
           <div className = "ChoiceBox">
           	<DragBox 
             	name = "Bottles"
@@ -29,7 +29,9 @@ export const Container = memo(function Container() {
             	f = "false"
           	/>
           </div>
-          <DropBox   />
-    </main>
+          <DropBox/>
+    </div>
   )
 })
+
+export default Container
