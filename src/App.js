@@ -10,6 +10,8 @@ import "./App.css";
 import MainPage from './pages/MainPage'
 import MicroPlasticPage from './pages/MicroPlasticPage'
 import WelcomePage from './pages/WelcomePage'
+import CalculatorPage from './pages/CalculatorPage'
+import Example from './tableau/Example'
 
 class App extends Component {
     render() {
@@ -19,6 +21,8 @@ class App extends Component {
                     <Route exact path="/" component={WelcomePage}/>
                     <Route exact path="/MainPage" component={MainPage}/>
                     <Route exact path="/MicroPlastics" component={MicroPlasticPage}/>
+                    <Route exact path="/Calculator" component={CalculatorPage}/>
+                    <Route exact path="/Example" component={Example}/>
                 </Switch>
             </BrowserRouter>
         );

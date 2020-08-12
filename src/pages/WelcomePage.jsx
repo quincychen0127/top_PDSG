@@ -22,10 +22,10 @@ const WelcomePage = () => {
                         <Link to="/MicroPlastics">Micro Plastics</Link>
                     </div>
                     <div className="SubPageTopic">
-                        Dataset Visualization
+                        <Link to="/Example">Dataset Visualization</Link>
                     </div>
                     <div className="SubPageTopic">
-                        Plastics Calculator
+                        <Link to="/Calculator">Plastics Calculator</Link>
                     </div>
                 </nav>
             </main>
