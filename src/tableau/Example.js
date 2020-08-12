@@ -11,7 +11,7 @@ class Example extends Component {
     initViz = () => {
         const options = {
             width: '1000px',
-            height: '600px'
+            height: '800px'
         }
         const vizContainer = this.vizContainer;
         this.div = new window.tableauSoftware.Viz(vizContainer, tableau_url, options);
