@@ -1,9 +1,9 @@
 import React, { Component } from "react"
 import tableauSoftware from "tableau-api"
 
-const tableau_url = "https://public.tableau.com/views/Example2_15969982762130/Dashboard4?:language=en&:display_count=y&:origin=viz_share_link"
+const tableau_url = "https://public.tableau.com/views/Example4_15970981403510/Dashboard6?:language=en&:display_count=y&:origin=viz_share_link"
 
-class Example extends Component {
+class Stats extends Component {
     componentDidMount = () => {
         this.initViz()
     }
@@ -25,4 +25,4 @@ class Example extends Component {
     }
 }
 
-export default Example
+export default Stats
