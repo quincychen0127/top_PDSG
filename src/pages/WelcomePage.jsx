@@ -27,6 +27,9 @@ const WelcomePage = () => {
                     <div className="SubPageTopic">
                         <Link to="/Calculator">Plastics Calculator</Link>
                     </div>
+                     <div className="SubPageTopic">
+                        <Link to="/PlasticsEntry">Plastics Entry</Link>
+                    </div>
                 </nav>
             </main>
         </div>
