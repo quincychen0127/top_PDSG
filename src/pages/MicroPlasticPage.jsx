@@ -1,5 +1,5 @@
 import React from "react"
-import {DndProvider,DragDropContext } from "react-dnd";
+import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 
 import Container from "../dragbox/DropDragContainer"

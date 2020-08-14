@@ -23,7 +23,7 @@ class App extends Component {
                     <Route exact path="/MainPage" component={MainPage}/>
                     <Route exact path="/MicroPlastics" component={MicroPlasticPage}/>
                     <Route exact path="/Calculator" component={CalculatorPage}/>
-                    <Route exact path="/VisualizationPage" component={VisualizationPage}/>
+                    <Route exact path="/Visualization" component={VisualizationPage}/>
                     <Route exact path="/PlasticsEntry" component={PlasticsEntry}/>
                 </Switch>
             </BrowserRouter>
