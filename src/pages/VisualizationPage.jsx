@@ -5,8 +5,8 @@ import Stats from "../tableau/Stats"
 const VisualizationPage = () => {
     return (
         <main>
-            <div ClassName="stats">
-               hello trying to fix
+            <div ClassName="LeftBar">
+              The cost of Ocean Plastic Pollution 
             <Stats/>
            </div>
         </main>
