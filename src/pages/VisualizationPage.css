@@ -1,0 +1,43 @@
+main {
+  display: flex;
+  flex-flow: column;
+  height: 95vh;
+  width: 98vw;
+}
+
+.UpperBar {
+  display: flex;
+  height: 20vh;
+  width: 98vw;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+
+.MainContent {
+  display: flex;
+  flex-flow: row;
+  height: 75vh;
+  width: 98vw;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  scroll-behavior: auto;
+  overflow-y: scroll;
+}
+
+.LeftBar {
+  display: flex;
+  flex-flow: column;
+  width: 35vw;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+}
+
+.RightBar {
+  display: flex;
+  flex-flow: column;
+  width: 64vw;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
