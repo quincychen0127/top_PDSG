@@ -5,10 +5,10 @@ import Stats from "../tableau/Stats"
 const VisualizationPage = () => {
     return (
         <main>
-            <div>
-                Some text over here
-            </div>
+            <div ClassName="stats">
+               hello
             <Stats/>
+           </div>
         </main>
     )
 }
