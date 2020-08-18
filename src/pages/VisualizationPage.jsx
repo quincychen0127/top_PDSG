@@ -1,12 +1,12 @@
 import React from "react"
 
-import Stats from "../tableau/Stats.js"
+import Stats from "../tableau/Stats"
 
 const VisualizationPage = () => {
     return (
         <main>
             <div ClassName="stats">
-               hello
+               hello trying to fix
             <Stats/>
            </div>
         </main>
