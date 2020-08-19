@@ -22,7 +22,7 @@ const WelcomePage = () => {
                         <Link to="/MicroPlastics">Micro Plastics</Link>
                     </div>
                     <div className="SubPageTopic">
-                        <Link to="/VisualizationPage">Dataset Visualization</Link>
+                        <Link to="/VisualizationPage">The Costs of Marine Plastic Pollution </Link>
                     </div>
                     <div className="SubPageTopic">
                         <Link to="/Calculator">Plastics Calculator</Link>
