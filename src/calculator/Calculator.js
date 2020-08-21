@@ -4,6 +4,8 @@ import "./Category"
 import "./Calculator.css"
 import Category from "./Category"
 
+
+// CHANGE THIS NUMBER IF YOU ADD OR REMOVE CATEGORIES
 const categoryNum = 2;
 
 class Calculator extends Component {
@@ -25,6 +27,7 @@ class Calculator extends Component {
             allToxic += states.sumToxic;
         }
         alert("Your total plastic footprint is " + allWeight);
+        this.reset();
     }
 
     reset = () => {
