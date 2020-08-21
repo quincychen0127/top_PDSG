@@ -26,7 +26,7 @@ class Calculator extends Component {
             allWeight += states.sumWeight;
             allToxic += states.sumToxic;
         }
-        alert("Your total plastic footprint is " + allWeight);
+        alert("Your annual plastic footprint is " + allWeight + " kilograms of plastic products, and " + allToxic + " grams of toxic materials polluted to the sea.");
         this.reset();
     }
 
@@ -39,6 +39,7 @@ class Calculator extends Component {
     render() {
         return (
             <div>
+                {/* Add new categories here */}
                 <Category
                     name="Packaging and Containers"
                     subnames={["Small plastic bottles", "Large plastic bottles"]}
@@ -53,6 +54,7 @@ class Calculator extends Component {
                     toxicity={[1,2]}
                     ref={this.category[1]}
                 />
+                
                 <button 
                     className="ResultButton"
                     onClick={this.showResult}
