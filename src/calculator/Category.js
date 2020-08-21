@@ -1,31 +1,29 @@
-import React, { Component, Children } from "react"
+import React, { Component, createRef } from "react"
 
 class Category extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            sumWeight: 0,
-            sumToxic: 0
+        this.subcategory = []
+        for (var i = 0; i < this.props.subnames.length; i++) {
+            this.subcategory.push(createRef());
         }
     }
 
-    callback = (states) => {
-        var newWeight = this.state.sumWeight + states.sumWeight;
-        var newToxic = this.state.sumToxic + states.sumToxic;
-        this.setState({ 
-            sumWeight: newWeight, 
-            sumToxic: newToxic
-        });
-        this.props.callback({newWeight, newToxic});
+    calculate = () => {
+        var sumWeight = 0;
+        var sumToxic = 0;
+        for (var i = 0; i < this.props.subnames.length; i++) {
+            var states = this.subcategory[i].current.calculate();
+            sumWeight += states.sumWeight;
+            sumToxic += states.sumToxic;
+        }
+        return {sumWeight, sumToxic};
     }
 
-    reset = () => {
-        this.setState({ 
-            sumWeight: 0, 
-            sumToxic: 0
-        });
-
-
+    reset = () => {        
+        for (var i = 0; i < this.props.subnames.length; i++) {
+            this.subcategory[i].current.reset();
+        }
     }
 
     render()
@@ -39,7 +37,7 @@ class Category extends Component {
                         subname={this.props.subnames[i]}
                         subweight={this.props.weight[i]}
                         subtoxicity={this.props.toxicity[i]}
-                        callback={(states) => this.callback(states)}
+                        ref={this.subcategory[i]}
                     />
                 )
             )
@@ -60,6 +58,8 @@ class SubCategory extends Component {
         this.state = {
             freq: "year",
             input: 0,
+            sumWeight: 0,
+            sumToxic: 0
         }
     }
 
@@ -82,9 +82,9 @@ class SubCategory extends Component {
         this.setState({ 
             freq: event.target.value, 
             input: this.state.input,
+            sumWeight: sumWeight,
+            sumToxic: sumToxic
         }); 
-
-        this.props.callback({sumWeight, sumToxic});
     }
 
     handleInputChange = (event) => {
@@ -106,16 +106,22 @@ class SubCategory extends Component {
         this.setState({ 
             freq: this.state.freq,
             input: input,
-        }); 
-
-        this.props.callback({sumWeight, sumToxic});
+            sumWeight: sumWeight,
+            sumToxic: sumToxic
+        });         
     }
 
     reset = () => { 
         this.setState({ 
             freq: "year",
             input: 0,
+            sumWeight: 0,
+            sumToxic: 0
         });
+    }
+
+    calculate = () => {
+        return this.state;
     }
 
     render()

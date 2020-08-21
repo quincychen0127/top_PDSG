@@ -1,42 +1,36 @@
-import React, { Component, Children } from "react"
+import React, { Component, createRef } from "react"
 
 import "./Category"
 import "./Calculator.css"
 import Category from "./Category"
 
+const categoryNum = 2;
+
 class Calculator extends Component {
     constructor(props) {
         super(props);
-        // this.state mean the unit chosen
-        this.state = {
-            allWeight: 0,
-            allToxic: 0
+        this.category = [];
+        for (var i = 0; i < categoryNum; i++) {
+            this.category.push(createRef());
         }
     }
 
     showResult = () => {
-        alert("Your total plastic footprint is " + this.state.allWeight);
-        this.setState({ 
-            allWeight: 0, 
-            allToxic: 0 
-        });
-    }
-
-    callback = (states) => {
-        var newWeight = this.state.allWeight + states.newWeight
-        var newToxic = this.state.allToxic + states.newToxic
-        this.setState({ 
-            allWeight: newWeight, 
-            allToxic: newToxic 
-        });
+        var allWeight = 0;
+        var allToxic = 0;
+        for (var i = 0; i < categoryNum; i++) {
+            var states = this.category[i].current.calculate();
+            console.log(states)
+            allWeight += states.sumWeight;
+            allToxic += states.sumToxic;
+        }
+        alert("Your total plastic footprint is " + allWeight);
     }
 
     reset = () => {
-        this.setState({ 
-            allWeight: 0, 
-            allToxic: 0 
-        });
-
+        for (var i = 0; i < categoryNum; i++) {
+            this.category[i].current.reset();
+        }
     }
 
     render() {
@@ -47,14 +41,14 @@ class Calculator extends Component {
                     subnames={["Small plastic bottles", "Large plastic bottles"]}
                     weight={[1,2]}
                     toxicity={[1,1]}
-                    callback={(states) => this.callback(states)}
+                    ref={this.category[0]}
                 />
                 <Category
                     name="Bathroom and Laundry"
                     subnames={["Toothbrushes", "Body soap bottles"]}
                     weight={[3,4]}
                     toxicity={[1,2]}
-                    callback={(states) => this.callback(states)}
+                    ref={this.category[1]}
                 />
                 <button 
                     className="ResultButton"
