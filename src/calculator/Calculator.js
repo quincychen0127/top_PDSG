@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { Component, Children } from "react"
 
 import "./Category"
 import "./Calculator.css"
@@ -9,19 +9,34 @@ class Calculator extends Component {
         super(props);
         // this.state mean the unit chosen
         this.state = {
-            sumWeight: 0,
-            sumToxic: 0
+            allWeight: 0,
+            allToxic: 0
         }
     }
 
     showResult = () => {
-        alert("Your total plastic footprint is " + this.state.sumWeight)
+        alert("Your total plastic footprint is " + this.state.allWeight);
+        this.setState({ 
+            allWeight: 0, 
+            allToxic: 0 
+        });
     }
 
     callback = (states) => {
-        var newWeight = this.state.sumWeight + states.SumWeight
-        var newToxic = this.state.sumToxic + states.sumToxic
-        this.setState({ sumWeight: newWeight, sumToxic:newToxic })
+        var newWeight = this.state.allWeight + states.newWeight
+        var newToxic = this.state.allToxic + states.newToxic
+        this.setState({ 
+            allWeight: newWeight, 
+            allToxic: newToxic 
+        });
+    }
+
+    reset = () => {
+        this.setState({ 
+            allWeight: 0, 
+            allToxic: 0 
+        });
+
     }
 
     render() {
@@ -32,20 +47,26 @@ class Calculator extends Component {
                     subnames={["Small plastic bottles", "Large plastic bottles"]}
                     weight={[1,2]}
                     toxicity={[1,1]}
-                    callback={this.callback}
+                    callback={(states) => this.callback(states)}
                 />
                 <Category
                     name="Bathroom and Laundry"
                     subnames={["Toothbrushes", "Body soap bottles"]}
                     weight={[3,4]}
                     toxicity={[1,2]}
-                    callback={this.callback}
+                    callback={(states) => this.callback(states)}
                 />
                 <button 
                     className="ResultButton"
                     onClick={this.showResult}
                 >
                     Show My Results!
+                </button>
+                <button
+                    className="ResetButton"
+                    onClick={this.reset}
+                >
+                    Reset All
                 </button>
             </div>
         )

@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { Component, Children } from "react"
 
 class Category extends Component {
     constructor(props) {
@@ -10,10 +10,22 @@ class Category extends Component {
     }
 
     callback = (states) => {
-        var newWeight = this.state.sumWeight + states.SumWeight
-        var newToxic = this.state.sumToxic + states.sumToxic
-        this.setState({ sumWeight: newWeight, sumToxic:newToxic })
-        this.props.callback(this.state);
+        var newWeight = this.state.sumWeight + states.sumWeight;
+        var newToxic = this.state.sumToxic + states.sumToxic;
+        this.setState({ 
+            sumWeight: newWeight, 
+            sumToxic: newToxic
+        });
+        this.props.callback({newWeight, newToxic});
+    }
+
+    reset = () => {
+        this.setState({ 
+            sumWeight: 0, 
+            sumToxic: 0
+        });
+
+
     }
 
     render()
@@ -27,7 +39,7 @@ class Category extends Component {
                         subname={this.props.subnames[i]}
                         subweight={this.props.weight[i]}
                         subtoxicity={this.props.toxicity[i]}
-                        callback={this.callback}
+                        callback={(states) => this.callback(states)}
                     />
                 )
             )
@@ -52,44 +64,62 @@ class SubCategory extends Component {
     }
 
     handleDropDownChange = (event) => {
-        this.setState({ freq: event.target.value });
+        var sumWeight, sumToxic;
+        var freq = event.target.value;
+        var prev = this.state.freq;
+        var input = this.state.input;
+
+        const time_table = {"year" : 1, "month" : 12, "week" : 52, "day" : 365}
+
+        if (input) {
+            sumWeight = input * this.props.subweight * (time_table[freq] - time_table[prev])
+            sumToxic = input * this.props.subtoxicity * (time_table[freq] - time_table[prev])
+        } else {
+            sumWeight = 0;
+            sumToxic = 0;
+        }
+
+        this.setState({ 
+            freq: event.target.value, 
+            input: this.state.input,
+        }); 
+
+        this.props.callback({sumWeight, sumToxic});
     }
 
     handleInputChange = (event) => {
-        if (event.target.value) {
-            this.setState({ input: event.target.value });
+        var sumWeight, sumToxic;
+        var freq = this.state.freq;
+        var prev = this.state.input;
+        var input = event.target.value;
+
+        const time_table = {"year" : 1, "month" : 12, "week" : 52, "day" : 365}
+
+        if (input) {
+            sumWeight = (input - prev) * this.props.subweight * time_table[freq];
+            sumToxic = (input - prev) * this.props.subtoxicity * time_table[freq];
         } else {
-            console.log("The input should not leave blank!");
-            this.setState({ input: 0 });
+            sumWeight = (0 - prev) * this.props.subweight * time_table[freq];
+            sumToxic = (0 - prev) * this.props.subtoxicity * time_table[freq];
         }
+
+        this.setState({ 
+            freq: this.state.freq,
+            input: input,
+        }); 
+
+        this.props.callback({sumWeight, sumToxic});
     }
 
-    sum = () => {
-        var sumWeight, sumToxic;
-        if (this.state.freq === "year") {
-            sumWeight = this.state.input * this.props.subweight
-            sumToxic = this.state.input * this.props.subtoxicity
-        }
-        if (this.state.freq === "month") {
-            sumWeight = this.state.input * this.props.subweight * 12
-            sumToxic = this.state.input * this.props.subtoxicity * 12
-        }
-        if (this.state.freq === "week") {
-            sumWeight = this.state.input * this.props.subweight * 52
-            sumToxic = this.state.input * this.props.subtoxicity * 52
-        }
-        if (this.state.freq === "day") {
-            sumWeight = this.state.input * this.props.subweight * 365
-            sumToxic = this.state.input * this.props.subtoxicity * 365
-        }
-
-        console.log({sumWeight,sumToxic})
-
-        this.props.callback({sumWeight : sumWeight, sumToxic : sumToxic})
+    reset = () => { 
+        this.setState({ 
+            freq: "year",
+            input: 0,
+        });
     }
 
     render()
-    {
+    {        
         return (
             <div>
                 <li className="SubCategory">
@@ -97,16 +127,14 @@ class SubCategory extends Component {
                 </li>
                 <input 
                     type="text" 
-                    onChange={this.handleInputChange}
-                    defaultValue="0"
-                    ref={(value) => this.state.input = value}
+                    onChange={(event) => this.handleInputChange(event)}
+                    value={this.state.input}
                 />
                 <select 
                     name="frequency" 
-                    onChange={this.handleDropDownChange} 
-                    placeholder="Select frequency"
-                    defaultValue={this.state.freq}
-                    ref={(value) => this.state.freq = value}
+                    onChange={(event) => this.handleDropDownChange(event)} 
+                    placeholder="Select"
+                    value={this.state.freq}
                 >
                     <option value="year">per year</option>
                     <option value="month">per month</option>
