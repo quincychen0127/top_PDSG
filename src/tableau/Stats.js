@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import tableauSoftware from "tableau-api"
 
 const tableau_url = "https://public.tableau.com/views/Example6_15973637563380/Dashboard6?:language=en&:display_count=y&publish=yes&:origin=viz_share_link"
 

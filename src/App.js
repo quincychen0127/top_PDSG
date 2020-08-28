@@ -3,7 +3,7 @@ Structure of Web Application
 */
 
 import React, { Component } from "react";
-import {BrowserRouter, Route, Switch, Link} from "react-router-dom"
+import {BrowserRouter, Route, Switch} from "react-router-dom"
 
 
 import "./App.css";
@@ -12,7 +12,7 @@ import MicroPlasticPage from './pages/MicroPlasticPage'
 import WelcomePage from './pages/WelcomePage'
 import CalculatorPage from './pages/CalculatorPage'
 import VisualizationPage from './pages/VisualizationPage'
-import PlasticsEntry from './pages/PlasticsEntry'
+import PlasticEntryPage from './pages/PlasticEntryPage'
 
 class App extends Component {
     render() {
@@ -24,7 +24,7 @@ class App extends Component {
                     <Route exact path="/MicroPlastics" component={MicroPlasticPage}/>
                     <Route exact path="/Calculator" component={CalculatorPage}/>
                     <Route exact path="/VisualizationPage" component={VisualizationPage}/>
-                    <Route exact path="/PlasticsEntry" component={PlasticsEntry}/>
+                    <Route exact path="/PlasticEntryPage" component={PlasticEntryPage}/>
                 </Switch>
             </BrowserRouter>
         );

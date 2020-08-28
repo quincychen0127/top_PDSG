@@ -40,6 +40,7 @@ class Calculator extends Component {
         return (
             <div>
                 {/* Add new categories here */}
+                {/* Toxicity in Quantifying impact file (48-h EC50s) */}
                 <Category
                     name="Packaging and Containers"
                     subnames={["Small plastic bottles", "Large plastic bottles"]}
