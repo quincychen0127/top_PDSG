@@ -11,18 +11,22 @@ class Category extends Component {
 
     calculate = () => {
         var sumWeight = 0;
-        var sumToxic = 0;
         for (var i = 0; i < this.props.subnames.length; i++) {
             var states = this.subcategory[i].current.calculate();
             sumWeight += states.sumWeight;
-            sumToxic += states.sumToxic;
         }
-        return {sumWeight, sumToxic};
+        return sumWeight;
     }
 
     reset = () => {        
         for (var i = 0; i < this.props.subnames.length; i++) {
             this.subcategory[i].current.reset();
+        }
+    }
+
+    display = () => {
+        for (var i = 0; i < this.props.subnames.length; i++) {
+            this.subcategory[i].current.display();
         }
     }
 
@@ -36,6 +40,7 @@ class Category extends Component {
                         key={i}
                         subname={this.props.subnames[i]}
                         subweight={this.props.weight[i]}
+                        subunit={this.props.unit[i]}
                         subtoxicity={this.props.toxicity[i]}
                         ref={this.subcategory[i]}
                     />
@@ -59,56 +64,45 @@ class SubCategory extends Component {
             freq: "year",
             input: 0,
             sumWeight: 0,
-            sumToxic: 0
+            toxic: "NoneToxic"
         }
     }
 
     handleDropDownChange = (event) => {
-        var sumWeight, sumToxic;
+        var sumWeight;
         var freq = event.target.value;
-        var prev = this.state.freq;
         var input = this.state.input;
 
         const time_table = {"year" : 1, "month" : 12, "week" : 52, "day" : 365}
 
         if (input) {
-            sumWeight = input * this.props.subweight * (time_table[freq] - time_table[prev])
-            sumToxic = input * this.props.subtoxicity * (time_table[freq] - time_table[prev])
+            sumWeight = input * this.props.subweight * time_table[freq]
         } else {
             sumWeight = 0;
-            sumToxic = 0;
         }
 
         this.setState({ 
             freq: event.target.value, 
             input: this.state.input,
             sumWeight: sumWeight,
-            sumToxic: sumToxic
         }); 
     }
 
     handleInputChange = (event) => {
-        var sumWeight, sumToxic;
+        var sumWeight;
         var freq = this.state.freq;
-        var prev = this.state.input;
         var input = event.target.value;
 
         const time_table = {"year" : 1, "month" : 12, "week" : 52, "day" : 365}
 
         if (input) {
-            sumWeight = (input - prev) * this.props.subweight * time_table[freq];
-            sumToxic = (input - prev) * this.props.subtoxicity * time_table[freq];
-        } else {
-            sumWeight = (0 - prev) * this.props.subweight * time_table[freq];
-            sumToxic = (0 - prev) * this.props.subtoxicity * time_table[freq];
+            sumWeight = input * this.props.subweight * time_table[freq]; 
         }
-
         this.setState({ 
             freq: this.state.freq,
             input: input,
             sumWeight: sumWeight,
-            sumToxic: sumToxic
-        });         
+        }); 
     }
 
     reset = () => { 
@@ -116,7 +110,6 @@ class SubCategory extends Component {
             freq: "year",
             input: 0,
             sumWeight: 0,
-            sumToxic: 0
         });
     }
 
@@ -124,29 +117,42 @@ class SubCategory extends Component {
         return this.state;
     }
 
+    display = () => {
+        if (this.props.subtoxicity === "Low") {
+            this.setState({toxic: "LowToxic"})
+        } else if (this.props.subtoxicity === "Medium") {
+            this.setState({toxic: "MediumToxic"})
+        } else if (this.props.subtoxicity === "High") {
+            this.setState({toxic: "HighToxic"})
+        }
+    }
+
     render()
-    {        
+    {   
         return (
-            <div>
-                <li className="SubCategory">
+            <div className={this.state.toxic}>
+                <div className="SubCategory">
                     {this.props.subname}
-                </li>
-                <input 
-                    type="text" 
-                    onChange={(event) => this.handleInputChange(event)}
-                    value={this.state.input}
-                />
-                <select 
-                    name="frequency" 
-                    onChange={(event) => this.handleDropDownChange(event)} 
-                    placeholder="Select"
-                    value={this.state.freq}
-                >
-                    <option value="year">per year</option>
-                    <option value="month">per month</option>
-                    <option value="week">per week</option>
-                    <option value="day">per day</option>
-                </select> 
+                </div>
+                <div className="SubContent">
+                    <input 
+                        type="text" 
+                        onChange={(event) => this.handleInputChange(event)}
+                        value={this.state.input}
+                    />
+                    <div>  {this.props.subunit}  </div>
+                    <select 
+                        name="frequency" 
+                        onChange={(event) => this.handleDropDownChange(event)} 
+                        placeholder="Select"
+                        value={this.state.freq}
+                    >
+                        <option value="year">per year</option>
+                        <option value="month">per month</option>
+                        <option value="week">per week</option>
+                        <option value="day">per day</option>
+                    </select> 
+                </div>
             </div>
         )
     }

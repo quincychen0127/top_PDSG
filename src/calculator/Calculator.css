@@ -1,0 +1,142 @@
+.Calculator {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-evenly;
+}
+
+.Header {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 15%;
+}
+
+.Header > div {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.Header:before {
+    content:"";
+    opacity: 0.6;
+    background: url("../asset/CalBackground.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
+
+.Category1 {
+    position: relative;
+    display: inline-block;
+}
+
+.Category1:before {
+    content:"";
+    opacity: 0.6;
+    background: url("../asset/HardPlastic.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
+
+.Category2 {
+    position: relative;
+    display: inline-block;
+}
+
+.Category2:before {
+    content:"";
+    opacity: 0.6;
+    background: url("../asset/SoftPlastic.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
+
+.Category3 {
+    position: relative;
+    display: inline-block;
+}
+
+.Category3:before {
+    content:"";
+    opacity: 0.6;
+    background: url("../asset/OtherPlastic.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
+
+.NoneToxic {
+    display: flex;
+    width: 350px;
+    flex-flow: column;
+    align-items: flex-start;
+    background-color: transparent;
+}
+
+.LowToxic {
+    display: flex;
+    width: 350px;
+    flex-flow: column;
+    align-items: flex-start;
+    background: rgba(129, 231, 11, 0.3)
+}
+
+.MediumToxic {
+    display: flex;
+    width: 350px;
+    flex-flow: column;
+    align-items: flex-start;
+    background: rgba(222, 247, 4, 0.3)
+}
+
+.HighToxic {
+    display: flex;
+    width: 350px;
+    flex-flow: column;
+    align-items: flex-start;
+    background: rgba(250, 94, 3, 0.3)
+}
+
+.SubContent {
+    display: flex;
+    width: 350px;
+    flex-flow: row;
+    align-items: flex-start;
+}
+
+.Buttons {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}
+
+.Buttons div {
+    display: flex;
+    width: 60%;
+    justify-content: space-evenly;
+}

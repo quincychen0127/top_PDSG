@@ -1,0 +1,115 @@
+main {
+    font-family: "Comfortaa";
+  }
+  #background {
+    content: url("https://images.unsplash.com/photo-1558640476-437a2b9438a2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2398&q=80");
+    width: 100vw;
+    position: absolute;
+    z-index: -1;
+  }
+  #center-box {
+    background: rgba(256,256,256,0.5);
+    width: 30vw;
+    height: 15vw;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: 20vw;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10%;
+  }
+  label, p {
+    font-size: 1.7vw;
+    padding-left: 1.5vw;
+    padding-right: 1.5vw;
+  }
+  .next-button {
+    background: none;
+    border: none;
+  }
+  .next-button:hover {
+    filter: invert(100%);
+  }
+  .next-button:focus {
+    outline: none;
+    transform: scale(1);
+  }
+  .next-button:active {
+    transform: scale(1.4);
+  }
+  .next-icon {
+    content: url(https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-right-01-512.png);
+    width: 1.4vw;
+  }
+  .others {
+    display: none;
+  }
+  #entanglement {
+    content: url("https://www.nationalgeographic.com/content/dam/magazine/rights-exempt/2018/06/plastic-animals/plastic-waste-single-use-worldwide-consumption-animals-2.ngsversion.1526443358738.adapt.1900.1.jpg");
+    width: 15vw;
+  }
+  #ingestion {
+    content: url("https://cdn.shopify.com/s/files/1/0886/7052/files/albatross_plastic_ingestion_large.jpg?v=1535930921");
+    width: 15vw;
+  }
+  #game {
+    width: 100vw;
+    visibility: hidden;
+  }
+  #green-body {
+    display: block;
+    position: absolute;
+    content: url("https://webcomicms.net/sites/default/files/clipart/138432/person-cartoon-138432-8487400.png");
+    width: 18vw;
+    top: 10vw;
+    right: 10vw;
+    animation-name: intoxicate;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+  }
+  .chemical {
+    position: absolute;
+    width: 8vw;
+    height: 8vw;
+    border-radius: 50%;
+    background-color: rgba(256,0,0,0.6);
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    animation-name: invade;
+    animation-play-state: paused;
+    animation-fill-mode: forwards;
+  }
+  @keyframes invade {
+    0% {
+      left: 0vw;
+      top: var(--start);
+    }
+    95% {
+      left: var(--x, 77vw);
+      top: var(--y, 20vw);
+      transform: scale(0.5);
+    }
+    100% {
+      left: var(--x, 77vw);
+      top: var(--y, 20vw);
+      transform: scale(0);
+    }
+  }
+  @keyframes intoxicate {
+  100% {
+      filter: hue-rotate(260deg);
+    }
+  }
+  strong {
+    background-color: rgba(250,200,0, 0.5);
+  }
+  .emoji {
+    width: 2vw;
+  }
